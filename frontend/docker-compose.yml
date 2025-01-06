@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  php:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - mi_red
+
+networks:
+  mi_red:
+    external: true

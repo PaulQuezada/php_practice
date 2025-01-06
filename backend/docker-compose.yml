@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  php:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - mariadb
+    networks:
+      - mi_red
+
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - mi_red
+
+networks:
+  mi_red:
+    external: true
+volumes:
+  mariadb_data:
