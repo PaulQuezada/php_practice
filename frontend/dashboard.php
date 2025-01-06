@@ -1,6 +1,7 @@
 <?php
 
-$verification = false;
+$verification = true;
+
 
 ?>
 

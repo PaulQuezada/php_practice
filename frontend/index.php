@@ -33,10 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Decodificación para luego mostrar la respuesta
         $responseData = json_decode($response, true);
-        if ($responseData) {
-            echo 'Respuesta del servidor: ' . htmlspecialchars(json_encode($responseData));
+        if ($responseData && isset($responseData['success']) && $responseData['success'] === true) {
+            echo '<script>window.location.href = "/dashboard.php";</script>';
         } else {
-            echo 'Error al decodificar la respuesta: ' . htmlspecialchars($response);
+            echo 'Respuesta del servidor: ' . htmlspecialchars(json_encode($responseData));
         }
     }
 
